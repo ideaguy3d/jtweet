@@ -8,7 +8,7 @@
 
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <h1>Ello World ^_^/</h1>
 </div>
 
