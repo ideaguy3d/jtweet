@@ -35,6 +35,7 @@
             </div>
             <!-- modal body: -->
             <div class="modal-body">
+                <div id="login-alert" class="alert alert-danger"></div>
                 <form>
                     <input id="loginActive" type="hidden" name="loginActive" value="1">
                     <div class="form-group">
@@ -57,7 +58,6 @@
 </section>
 
 <script>
-    
     (function($){
         $("#toggleLogin").click(function() {
             if($("#loginActive").val() === "1") {
@@ -73,20 +73,25 @@
             }
         });
         
-        $('#loginSignupButton').click(function() {
+        $('#loginSignupButton').click(function(e) {
             $.ajax({
                 type: 'POST',
                 url: 'actions.php?action=loginSignup',
                 data: 'email='+$('#email').val()+"&password="+$('#password').val()
                     +"&loginActive="+$('#loginActive').val(),
                 success: function(result) {
-                    alert(result);
+                    if (result == '1') {
+                        console.log("user was logged in succussfully");
+                        window.location.assign("localhost:81/jtweet");
+                    }
+                    else {
+                        e.preventDefault();
+                        $('#login-alert').html(result).show();
+                    }
                 }
             });
-        })
+        });
     })(jQuery);
-
-
 </script>
 
 </body>

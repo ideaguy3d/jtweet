@@ -20,7 +20,7 @@
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/jstyle.css">
 
 </head>
 <body>
@@ -46,10 +46,12 @@
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                Login / Signup
-            </button>
+            <?php if($_SESSION['id']) { ?>
+                <a href="?function=logout" class="btn btn-primary">Logout</a>
+            <?php } else { ?>
+                <!-- button triggers modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login / Signup</button>
+            <?php } ?>
         </div>
     </div>
 </nav>
