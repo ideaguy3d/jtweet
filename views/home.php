@@ -9,7 +9,23 @@
 ?>
 
 <div class="container-fluid">
-    <h1>Ello World ^_^/</h1>
+    <div class="row">
+        <!-- Left Side -->
+        <div class="col-8">
+            <h1>Recent Tweets.</h1>
+
+            <!-- This will turn into an angular data-binding that makes a request to the php backend. -->
+            <?php displayTweets('public'); ?>
+        </div>
+
+        <!-- Right Side -->
+        <div class="col-4">
+            <br>
+            <!-- These will turn into an angular data-binding that make a request to the php backend. -->
+            <?php displaySearch(); ?>
+            <?php displayTweetBox(); ?>
+        </div>
+    </div>
 </div>
 
 

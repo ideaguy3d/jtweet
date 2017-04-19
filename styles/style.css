@@ -23,11 +23,3 @@ body {
     max-width: 680px;
     padding: 0 15px;
 }
-
-.jmain-container {
-
-}
-
-#login-alert {
-    display: none;
-}

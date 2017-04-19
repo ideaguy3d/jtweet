@@ -42,16 +42,16 @@
                 <a class="nav-link" href="?page=yourtweets">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="?page=publicprofiles">Tweets</a>
+                <a class="nav-link" href="?page=publicprofiles">Tweets</a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
-            <?php if($_SESSION['id']) { ?>
+            <?php if(isset($_SESSION['id'])) { if($_SESSION['id']) { ?>
                 <a href="?function=logout" class="btn btn-primary">Logout</a>
             <?php } else { ?>
                 <!-- button triggers modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login / Signup</button>
-            <?php } ?>
+            <?php } } ?>
         </div>
     </div>
 </nav>
