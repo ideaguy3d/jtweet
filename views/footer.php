@@ -91,6 +91,23 @@
                 }
             });
         });
+
+        $('.toggleFollow').click(function(e) {
+//            alert("userId = "+$(this).attr('data-userId'));
+            var j_id = $(this).attr('data-userId');
+            $.ajax({
+                type: 'POST',
+                url: 'actions.php?action=toggleFollow',
+                data: 'userId='+j_id,
+                success: function(result) {
+                    if(result == '1') {
+                        $("a[data-userId='" + j_id + "']").html('Follow');
+                    } else if (result === '2') {
+                        $("a[data-userId='" + j_id + "']").html('Unfollow');
+                    }
+                }
+            });
+        });
     })(jQuery);
 </script>
 

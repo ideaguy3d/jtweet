@@ -59,10 +59,12 @@ function displayTweets($type) {
             $userQuery = "select * from users where id = " . mysqli_real_escape_string($link, $row['userid']) . " limit 1";
             $userQueryResult = mysqli_query($link, $userQuery);
             $user = mysqli_fetch_assoc($userQueryResult);
-
+            $userIdHolder = isset($row['id']) ? $row['id'] : '';
             echo '<p><strong>' . $row ['tweet'];
             echo '</strong> <small>~' . $user['email'] . ', '
-                . time_since(time() - strtotime($row['datetime'])) . ' ago.</small></p>';
+                . time_since(time() - strtotime($row['datetime'])) . ' ago.</small> 
+                    <a href="" class="btn btn-sm btn-info toggleFollow" data-userId="'
+                .$userIdHolder.'">Follow</a></p>';
 
             $row = mysqli_fetch_assoc($result);
         }
@@ -85,11 +87,12 @@ function displayTweetBox () {
     if(isset($_SESSION['id'])) {
         if ($_SESSION['id'] > 0) {
             echo '
-            <div class="form-inline">
+            <div class="form">
               <div class="form-group mx-sm-3">
                 <textarea class="form-control" id="tweetContent" placeholder="Write your tweet!"></textarea>
+                <br>
+                <button type="submit" class="btn btn-warning">Post</button>
               </div>
-              <button type="submit" class="btn btn-warning">Post</button>
             </div>
         ';
         }

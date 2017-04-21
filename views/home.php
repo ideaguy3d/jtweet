@@ -22,7 +22,7 @@
         <div class="col-4">
             <br>
             <!-- These will turn into an angular data-binding that make a request to the php backend. -->
-            <?php displaySearch(); ?>
+            <?php displaySearch(); ?> <hr>
             <?php displayTweetBox(); ?>
         </div>
     </div>

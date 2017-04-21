@@ -26,13 +26,14 @@
 <body>
 
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <!-- button to open / close menu if screen width gets too small -->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">jTweet</a>
-
+    <!-- webpage links -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -46,12 +47,15 @@
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
-            <?php if(isset($_SESSION['id'])) { if($_SESSION['id']) { ?>
+            <?php if(isset($_SESSION['id'])) {
+                if($_SESSION['id']) { ?>
                 <a href="?function=logout" class="btn btn-primary">Logout</a>
-            <?php } else { ?>
+            <?php } } else { ?>
                 <!-- button triggers modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login / Signup</button>
-            <?php } } ?>
+            <?php } ?>
         </div>
     </div>
 </nav>
+
+<br>
