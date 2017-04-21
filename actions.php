@@ -10,7 +10,8 @@ include ("functions.php");
 
 $error = "";
 
-if($_GET['action'] == 'loginSignup'){
+// ACTION = 'loginSignup'
+if($_GET['action'] == 'loginSignup') {
     $email = $_POST['email'];
 
     // quick validation
@@ -77,12 +78,13 @@ if($_GET['action'] == 'loginSignup'){
     }
 }
 
+// ACTION = 'toggleFollow'
 if($_GET['action'] == 'toggleFollow') {
-    $query = "select * from isFollowing where follower ='"
-        .mysqli_real_escape_string($link, $_SESSION['id']) ."' and isFollowing = '"
-        .mysqli_real_escape_string($link, $_POST['userId'])."' limit 1";
+    $query = "select * from isFollowing where follower = "
+        .mysqli_real_escape_string($link, $_SESSION['id']) ." and isFollowing = "
+        .mysqli_real_escape_string($link, $_POST['userId'])." limit 1";
     $result = mysqli_query($link, $query);
-    if(mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) > 0) {
         // Then we are following
         $row = mysqli_fetch_assoc($result);
         mysqli_query($link, "delete from isFollowing where id = "
@@ -90,9 +92,10 @@ if($_GET['action'] == 'toggleFollow') {
         echo '1'; // user Un-followed
     }
     else {
-        mysqli_query($link, "insert into isFollowing (follower, isFollowing) values("
-            .mysqli_real_escape_string($link, $_SESSION['id']).","
-            .mysqli_real_escape_string($link, $_POST['userId']).")");
+        $realSessionId = mysqli_real_escape_string($link, $_SESSION['id']);
+        $realPostUser = mysqli_real_escape_string($link, $_POST['userId']);
+        $query = "insert into isFollowing (follower, isFollowing) values(".$realSessionId.", ".$realPostUser.")";
+        mysqli_query($link, $query);
         echo '2'; // user followed
     }
 }

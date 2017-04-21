@@ -47,12 +47,25 @@ function displayTweets($type) {
 
     if ($type == 'public') {
         $whereClause = '';
+    } else if ($type == 'isFollowing') {
+        $query = "select * from isfollowing where follower =".mysqli_real_escape_string($link, $_SESSION['id']);
+        $result = mysqli_query($link, $query);
+
+        $whereClause = "";
+        while($row = mysqli_fetch_assoc($result)) {
+            if($whereClause == "") {
+                $whereClause = "where";
+            } else {
+                $whereClause .= " or";
+            }
+            $whereClause .= " userid = ".$row['isFollowing'];
+        }
     }
 
     $query = "select * from tweets " . $whereClause . " order by datetime desc limit 10";
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) == 0) {
-        echo 'there are no tweets to display';
+        echo '<br>there are no tweets to display';
     } else {
         $row = mysqli_fetch_assoc($result);
         while ($row) {
@@ -63,7 +76,7 @@ function displayTweets($type) {
             echo '<p><strong>' . $row ['tweet'];
             echo '</strong> <small>~' . $user['email'] . ', '
                 . time_since(time() - strtotime($row['datetime'])) . ' ago.</small> 
-                    <a href="" class="btn btn-sm btn-info toggleFollow" data-userId="'
+                    <a class="btn btn-sm btn-info toggleFollow" data-userid="'
                 .$userIdHolder.'">Follow</a></p>';
 
             $row = mysqli_fetch_assoc($result);

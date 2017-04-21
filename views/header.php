@@ -32,7 +32,7 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">jTweet</a>
+    <a class="navbar-brand" href="?page=yourtweets">jTweet</a>
     <!-- webpage links -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">

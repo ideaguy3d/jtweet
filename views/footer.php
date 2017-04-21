@@ -74,6 +74,7 @@
         });
         
         $('#loginSignupButton').click(function(e) {
+            e.preventDefault();
             $.ajax({
                 type: 'POST',
                 url: 'actions.php?action=loginSignup',
@@ -82,10 +83,9 @@
                 success: function(result) {
                     if (result == '1') {
                         console.log("user was logged in succussfully");
-                        window.location.assign("localhost:81/jtweet");
+                        window.location.assign("/jtweet");
                     }
                     else {
-                        e.preventDefault();
                         $('#login-alert').html(result).show();
                     }
                 }
@@ -93,16 +93,18 @@
         });
 
         $('.toggleFollow').click(function(e) {
-//            alert("userId = "+$(this).attr('data-userId'));
-            var j_id = $(this).attr('data-userId');
+            var j_id = $(this).attr('data-userid');
+            // alert("j_id = "+j_id);
             $.ajax({
                 type: 'POST',
                 url: 'actions.php?action=toggleFollow',
                 data: 'userId='+j_id,
                 success: function(result) {
-                    if(result == '1') {
+                    console.log('result = '+result);
+                    if(result === '1') { // user Un-followed
                         $("a[data-userId='" + j_id + "']").html('Follow');
-                    } else if (result === '2') {
+                    }
+                    else if (result === '2') { // user followed
                         $("a[data-userId='" + j_id + "']").html('Unfollow');
                     }
                 }

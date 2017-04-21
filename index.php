@@ -10,7 +10,12 @@ include ("functions.php");
 
 include ("views/header.php");
 
-include ("views/home.php");
+$page = isset($_GET['page']) ? $_GET['page'] : '';
+if($page == 'timeline') {
+    include ("views/timeline.php");
+} else {
+    include ("views/home.php");
+}
 
 include ("views/footer.php");
 
