@@ -44,22 +44,28 @@ function time_since($since) {
 
 function displayTweets($type) {
     global $link;
-
+    $sessionCheck = isset($_SESSION['id']) ? $_SESSION['id'] : '987654321';
+    $realSession = mysqli_real_escape_string($link, $sessionCheck);
+    
     if ($type == 'public') {
         $whereClause = '';
-    } else if ($type == 'isFollowing') {
-        $query = "select * from isfollowing where follower =".mysqli_real_escape_string($link, $_SESSION['id']);
+    }
+    else if ($type == 'isFollowing') {
+        $query = "select * from isfollowing where follower =" . mysqli_real_escape_string($link, $_SESSION['id']);
         $result = mysqli_query($link, $query);
 
         $whereClause = "";
-        while($row = mysqli_fetch_assoc($result)) {
-            if($whereClause == "") {
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($whereClause == "") {
                 $whereClause = "where";
             } else {
                 $whereClause .= " or";
             }
-            $whereClause .= " userid = ".$row['isFollowing'];
+            $whereClause .= " userid = " . $row['isFollowing'];
         }
+    }
+    else if ($type == 'yourtweets') {
+        $whereClause = "where userid = ".$realSession;
     }
 
     $query = "select * from tweets " . $whereClause . " order by datetime desc limit 10";
@@ -73,11 +79,25 @@ function displayTweets($type) {
             $userQueryResult = mysqli_query($link, $userQuery);
             $user = mysqli_fetch_assoc($userQueryResult);
             $userIdHolder = isset($row['id']) ? $row['id'] : '';
+
+            #region The html output being echoed on multiple lines
             echo '<p><strong>' . $row ['tweet'];
-            echo '</strong> <small>~' . $user['email'] . ', '
-                . time_since(time() - strtotime($row['datetime'])) . ' ago.</small> 
-                    <a class="btn btn-sm btn-info toggleFollow" data-userid="'
-                .$userIdHolder.'">Follow</a></p>';
+            echo '</strong> <small>~' . $user['email'] . ', ' . time_since(time() - strtotime($row['datetime'])) . ' ago.</small>
+                <a class="btn btn-sm btn-info toggleFollow" data-userid="' . $userIdHolder . '">';
+
+            $isFollowingQuery = "select * from isFollowing where follower = ".$realSession
+                ." and isFollowing = ".mysqli_real_escape_string($link, $row['userid'])." limit 1";
+
+            $isFollowingQueryResult = mysqli_query($link, $isFollowingQuery);
+
+            if(mysqli_num_rows($isFollowingQueryResult) > 0) {
+                echo "Unfollow";
+            } else {
+                echo "Follow";
+            }
+            echo '</a></p>';
+            #endregion
+
 
             $row = mysqli_fetch_assoc($result);
         }
@@ -96,15 +116,17 @@ function displaySearch() {
     ';
 }
 
-function displayTweetBox () {
-    if(isset($_SESSION['id'])) {
+function displayTweetBox() {
+    if (isset($_SESSION['id'])) {
         if ($_SESSION['id'] > 0) {
             echo '
+            <div id="tweetSuccess" class="alert alert-success">jTweet successfully posted!</div>
+            <div id="tweetFail" class="alert alert-danger">jTweet Failed to post...</div>
             <div class="form">
               <div class="form-group mx-sm-3">
-                <textarea class="form-control" id="tweetContent" placeholder="Write your tweet!"></textarea>
+                <textarea id="tweetContent" class="form-control" placeholder="Write your tweet!"></textarea>
                 <br>
-                <button type="submit" class="btn btn-warning">Post</button>
+                <button id="postTweetButton" class="btn btn-warning">Post</button>
               </div>
             </div>
         ';

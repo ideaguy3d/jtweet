@@ -31,3 +31,11 @@ body {
 #login-alert {
     display: none;
 }
+
+#tweetSuccess {
+    display: none;
+}
+
+#tweetFail {
+    display: none;
+}

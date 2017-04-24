@@ -21,7 +21,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 
-<!-- Modal Section: -->
+<!-- START: Modal Section -->
 <section class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -56,6 +56,7 @@
         </div>
     </div>
 </section>
+<!-- END: Modal Section -->
 
 <script>
     (function($){
@@ -106,6 +107,26 @@
                     }
                     else if (result === '2') { // user followed
                         $("a[data-userId='" + j_id + "']").html('Unfollow');
+                    }
+                }
+            });
+        });
+
+        $('#postTweetButton').click(function(e) {
+            $.ajax({
+                type: 'POST',
+                url: 'actions.php?action=postTweet',
+                data: 'tweetContent='+$('#tweetContent').val(),
+                success: function(result) {
+                    if(result == "ja_tweetSuccessfullyAdded") {
+                        $("#tweetSuccess").show();
+                        $("#tweetFail").hide();
+                        window.location = "/jtweet";
+                    } else if (result != "") {
+                        $("#tweetFail").html(result).show();
+                        $("#tweetSuccess").hide();
+                    } else {
+                        console.log("in tweetButton success callback");
                     }
                 }
             });

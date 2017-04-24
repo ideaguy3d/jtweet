@@ -10,14 +10,20 @@
 
 <div class="container-fluid">
     <div class="row">
-        <!-- Left Side -->
+        <!------------------------------------------------>
+        <!------------------ Left Side ------------------>
+        <!------------------------------------------------>
         <div class="col-8">
             <h1>Tweets For You!</h1>
             <!-- This will turn into an angular data-binding that makes a request to the php backend. -->
             <?php displayTweets('isFollowing'); ?>
+
+            <?php include("./linq1-prac1.html"); ?>
         </div>
 
-        <!-- Right Side -->
+        <!------------------------------------------------>
+        <!------------------ Right Side ------------------>
+        <!------------------------------------------------>
         <div class="col-4">
             <br>
             <!-- These will turn into an angular data-binding that make a request to the php backend. -->
