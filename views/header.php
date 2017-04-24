@@ -40,10 +40,10 @@
                 <a class="nav-link" href="?page=timeline">Timeline <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?page=yourtweets">Profile</a>
+                <a class="nav-link" href="?page=yourtweets">Your Tweets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?page=publicprofiles">Tweets</a>
+                <a class="nav-link" href="?page=publicprofiles">Public Profiles</a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">

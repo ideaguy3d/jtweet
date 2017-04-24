@@ -28,6 +28,10 @@ else if ($page == 'home') {
 else if ($page == 'search') {
     include ("views/search.php");
 }
+// public profile page
+else if ($page == 'publicprofiles') {
+    include ("views/public.profile.php");
+}
 // default page
 else {
     include("views/home.php");

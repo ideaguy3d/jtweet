@@ -47,9 +47,11 @@ function displayTweets($type) {
     $sessionCheck = isset($_SESSION['id']) ? $_SESSION['id'] : '987654321';
     $realSession = mysqli_real_escape_string($link, $sessionCheck);
 
+    // public
     if ($type == 'public') {
         $whereClause = '';
     }
+    // is following
     else if ($type == 'isFollowing') {
         $query = "select * from isfollowing where follower =" . mysqli_real_escape_string($link, $_SESSION['id']);
         $result = mysqli_query($link, $query);
@@ -64,6 +66,7 @@ function displayTweets($type) {
             $whereClause .= " userid = " . $row['isFollowing'];
         }
     }
+    // your tweets
     else if ($type == 'yourtweets') {
         $whereClause = "where userid = ".$realSession;
     }
@@ -73,7 +76,15 @@ function displayTweets($type) {
         echo "<i>Showing results for <strong><u>'".$realQuery."'</u></strong></i><hr>";
         $whereClause = "where tweet like '%".$realQuery."%'";
     }
+    else if (is_numeric($type)) {
+        $userQuery = "select * from users where id = ".mysqli_real_escape_string($link, $type)." limit 1";
+        $userQueryResult = mysqli_query($link, $userQuery);
+        $user = mysqli_fetch_assoc($userQueryResult);
+        echo "<h2>".mysqli_real_escape_string($link, $user['email'])."'s tweets</h2>";
+        $whereClause = "where userid = ".mysqli_real_escape_string($link, $type);
+    }
 
+    // the code that determines which tweets to show.
     $query = "select * from tweets " . $whereClause . " order by datetime desc limit 10";
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) == 0) {
@@ -104,9 +115,18 @@ function displayTweets($type) {
             echo '</a></div></div><br>';
             #endregion
 
-
             $row = mysqli_fetch_assoc($result);
         }
+    }
+}
+
+function displayUsers () {
+    global $link;
+
+    $query = "select * from users";
+    $result = mysqli_query($link, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<p><a href='?page=publicprofiles&userid=".$row['id']."'>".$row['email']."</a></p>";
     }
 }
 
