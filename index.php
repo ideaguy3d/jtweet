@@ -12,13 +12,24 @@ include("views/header.php");
 
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 
+// timeline page
 if ($page == 'timeline') {
     include("views/timeline.php");
-} else if ($page == 'yourtweets') {
+}
+// yourtweets page
+else if ($page == 'yourtweets') {
     include("views/yourtweets.php");
-} else if ($page == 'home') {
+}
+// home page
+else if ($page == 'home') {
     include ("views/home.php");
-} else {
+}
+// search page
+else if ($page == 'search') {
+    include ("views/search.php");
+}
+// default page
+else {
     include("views/home.php");
 }
 

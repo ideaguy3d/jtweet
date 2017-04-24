@@ -46,7 +46,7 @@ function displayTweets($type) {
     global $link;
     $sessionCheck = isset($_SESSION['id']) ? $_SESSION['id'] : '987654321';
     $realSession = mysqli_real_escape_string($link, $sessionCheck);
-    
+
     if ($type == 'public') {
         $whereClause = '';
     }
@@ -67,6 +67,12 @@ function displayTweets($type) {
     else if ($type == 'yourtweets') {
         $whereClause = "where userid = ".$realSession;
     }
+    else if ($type == 'search') {
+        $queryUrl = $_GET['q'];
+        $realQuery = mysqli_real_escape_string($link, $queryUrl);
+        echo "<i>Showing results for <strong><u>'".$realQuery."'</u></strong></i><hr>";
+        $whereClause = "where tweet like '%".$realQuery."%'";
+    }
 
     $query = "select * from tweets " . $whereClause . " order by datetime desc limit 10";
     $result = mysqli_query($link, $query);
@@ -81,7 +87,7 @@ function displayTweets($type) {
             $userIdHolder = isset($row['id']) ? $row['id'] : '';
 
             #region The html output being echoed on multiple lines
-            echo '<p><strong>' . $row ['tweet'];
+            echo '<div class="card"><div class="card-block"><strong>' . $row ['tweet'];
             echo '</strong> <small>~' . $user['email'] . ', ' . time_since(time() - strtotime($row['datetime'])) . ' ago.</small>
                 <a class="btn btn-sm btn-info toggleFollow" data-userid="' . $userIdHolder . '">';
 
@@ -95,7 +101,7 @@ function displayTweets($type) {
             } else {
                 echo "Follow";
             }
-            echo '</a></p>';
+            echo '</a></div></div><br>';
             #endregion
 
 
@@ -106,13 +112,14 @@ function displayTweets($type) {
 
 function displaySearch() {
     echo '
-        <div class="form-inline">
+        <form class="form-inline">
           <div class="form-group mx-sm-3">
+            <input type="hidden" name="page" value="search">
             <label for="tweetSearch" class="sr-only">Search for tweets</label>
-            <input type="text" class="form-control" id="tweetSearch" placeholder="Search for tweets">
+            <input type="text" name="q" class="form-control" id="tweetSearch" placeholder="Search for tweets">
           </div>
           <button type="submit" class="btn btn-primary">Search</button>
-        </div>
+        </form>
     ';
 }
 
