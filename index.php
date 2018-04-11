@@ -16,13 +16,16 @@ $page = isset($_GET['page']) ? $_GET['page'] : '';
 if ($page == 'timeline') {
     include("views/timeline.php");
 }
+
 // yourtweets page
 else if ($page == 'yourtweets') {
     include("views/yourtweets.php");
 }
+
 // home page
 else if ($page == 'home') {
     include ("views/home.php");
+
 }
 // search page
 else if ($page == 'search') {
