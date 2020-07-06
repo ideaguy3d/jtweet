@@ -3,16 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Laravel React</title>
+    
+    <style>
+        #lr-left-side {
+            display: inline-block;
+            margin: 12px;
+            padding: 8px;
+        }
+        
+        #lr-right-side {
+            display: inline-block;
+            margin: 12px;
+            padding: 8px;
+        }
+        
+        #task-app {
+            border: #1c5ab0 4px solid;
+        }
+    </style>
 </head>
 
 
 <body>
 
-<div id="hm-avatar"></div>
+<section id="lr-left-side">
+    <div id="hm-avatar"></div>
+    
+    <div id="hello-world"></div>
+    
+    <div id="counter"></div>
+</section>
 
-<div id="hello-world"></div>
+<section id="lr-right-side">
+    <div id="task-app"></div>
+</section>
 
-<div id="counter"></div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.min.js"></script>
@@ -21,6 +46,11 @@
 
 <script type="text/jsx" src="app/components/basic/avatar1.js"></script>
 <script type="text/jsx;harmony=true" src="app/components/basic/counter.js"></script>
+
+<!-- task app component -->
+<script type="text/jsx;harmony=true" src="app/components/basic/task-list.js"></script>
+<script type="text/jsx;harmony=true" src="app/components/basic/task-app.js"></script>
+
 
 
 </body>
