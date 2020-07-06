@@ -34,11 +34,17 @@ Released   : 20140225
         </div>
         <div id="menu">
             <ul>
-                <li class="current_page_item"><a href="./" accesskey="1" title="">Homepage</a></li>
-                <li><a href="#" accesskey="2" title="">Our Clients</a></li>
-                <li><a href="./about" accesskey="3" title="">About Us</a></li>
-                <li><a href="#" accesskey="4" title="">Careers</a></li>
-                <li><a href="#" accesskey="5" title="">Contact Us</a></li>
+                <!-- current_page_item -->
+                <li class="{{Request::path() === '/' ? 'current_page_item' : ''}}">
+                    <a href="./" accesskey="1" title="">Homepage</a></li>
+                <li class="{{Request::is('clients') ? 'current_page_item' : ''}}">
+                    <a href="#" accesskey="2" title="">Our Clients</a></li>
+                <li class="{{Request::is('about') ? 'current_page_item' : ''}}">
+                    <a href="./about" accesskey="3" title="">About Us</a></li>
+                <li class="{{Request::is('careers') ? 'current_page_item' : ''}}">
+                    <a href="#" accesskey="4" title="">Careers</a></li>
+                <li class="{{Request::is('contact') ? 'current_page_item' : ''}}">
+                    <a href="./contact" accesskey="5" title="">Contact Us</a></li>
             </ul>
         </div>
     </div>
