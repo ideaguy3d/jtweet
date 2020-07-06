@@ -22,3 +22,7 @@ Route::get('/hello', function() {
 });
 
 Route::get('/posts/{slug}', 'PostsCtrl@show');
+
+Route::get('/contact', function() {
+   return view('contact-us');
+});

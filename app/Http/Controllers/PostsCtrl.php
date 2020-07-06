@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Posts;
 
 class PostsCtrl extends Controller
 {
     //
     public function show($slug) {
-        $post = \DB::table('posts')->where('slug', $slug)->first();
+        $post = Posts::where('slug', $slug)->firstOrFail();
         //dd($post);
         
         return view('posts', ['post' => $post->body]);

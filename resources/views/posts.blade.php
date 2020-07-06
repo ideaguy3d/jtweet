@@ -7,9 +7,13 @@
 
 <body>
 
+
+
 <p>My Blog Post</p>
 
 <h1>slug = {{$post}} ;</h1>
+
+
 
 </body>
 </html>
