@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function() {
     return view('welcome');
 });
@@ -24,5 +25,9 @@ Route::get('/hello', function() {
 Route::get('/posts/{slug}', 'PostsCtrl@show');
 
 Route::get('/contact', function() {
-   return view('contact-us');
+    return view('contact-us');
+});
+
+Route::get('/about', function() {
+    return view('about');
 });
