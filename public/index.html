@@ -16,36 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/JSXTransformer.js"></script>
 
-<script type="text/jsx">
-
-    let Avatar = React.createClass({
-        getDefaultProps: function(){
-          return {
-              path: 'http://bit.ly/1NABbkf'
-          }
-        },
-        render: function () {
-            return (
-                <div>
-                    <a href={this.props.path} target="_blank"><img src={this.props.path}/></a>
-                </div>
-            );
-        }
-    });
-
-    let HelloWorld = React.createClass({
-        render: function () {
-            return <h2><b> Hi World \^_^</b></h2>;
-        }
-    });
-    
-    
-    
-    React.render(<Avatar path="https://hackmatch.io/img/hack-match300.png" />, document.getElementById('hm-avatar'));
-    React.render(<HelloWorld />, document.getElementById('hello-world'));
-    
-
-</script>
+<script type="text/jsx" src="app/components/basics/avatar1.js"></script>
 
 </body>
 </html>
