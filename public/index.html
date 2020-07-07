@@ -8,6 +8,7 @@
         body {
             font-family: sans-serif;
         }
+        
         #lr-left-side {
             display: inline-block;
             margin: 12px;
@@ -21,7 +22,8 @@
         }
         
         #task-app {
-            border: #1c5ab0 4px solid;padding: 12px;
+            border: #1c5ab0 4px solid;
+            padding: 12px;
         }
     </style>
 </head>
@@ -39,8 +41,11 @@
 
 <section id="lr-right-side">
     <div id="task-app"></div>
+    
+    <br><br>
+    
+    <div id="gist-app"></div>
 </section>
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.min.js"></script>
@@ -54,6 +59,9 @@
 <script type="text/jsx;harmony=true" src="app/components/basic/task-list.js"></script>
 <script type="text/jsx;harmony=true" src="app/components/basic/task-app.js"></script>
 
+<script type="text/jsx;harmony=true" src="app/components/basic/gist.js"></script>
+<script type="text/jsx;harmony=true" src="app/components/basic/gist-add-form.js"></script>
+<script type="text/jsx;harmony=true" src="app/components/basic/gist-box.js"></script>
 
 
 </body>

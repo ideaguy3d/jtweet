@@ -17,7 +17,7 @@ let TaskApp = React.createClass({
 
     addTask: function (eventObj) {
         eventObj.preventDefault();
-        
+
         //this.state.task += eventObj.target.value;
         this.setState({
             items: this.state.items.concat([this.state.task]),
