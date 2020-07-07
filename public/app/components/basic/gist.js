@@ -1,5 +1,3 @@
-"use strict";
-
 let Gist = React.createClass({
 
     render: function () {
@@ -13,3 +11,5 @@ let Gist = React.createClass({
 
 });
 
+
+// export default Gist;

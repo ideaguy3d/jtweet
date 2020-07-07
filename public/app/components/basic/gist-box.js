@@ -1,6 +1,6 @@
-"use strict";
+// import GistAddForm from "./gist-add-form";
+// import Gist from "./gist";
 
-//
 let GistBox = React.createClass({
 
     getInitialState: function () {
@@ -14,7 +14,8 @@ let GistBox = React.createClass({
 
     addGist: function (username) {
         let url = `https://api.github.com/users/${username}/gists`;
-        
+
+        // using jQuery
         $.get(url, function (result) {
             const r = result[0];
             const username = r.owner.login;
@@ -43,3 +44,5 @@ let GistBox = React.createClass({
 });
 
 React.render(<GistBox/>, document.querySelector('#gist-app'));
+
+// export default GistBox;

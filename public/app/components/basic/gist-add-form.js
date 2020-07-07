@@ -1,6 +1,3 @@
-"use strict";
-
-//
 let GistAddForm = React.createClass({
 
     getInitialState: function () {
@@ -28,3 +25,6 @@ let GistAddForm = React.createClass({
     }
 
 });
+
+
+// export default GistAddForm;
