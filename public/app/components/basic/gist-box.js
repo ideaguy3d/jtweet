@@ -12,6 +12,18 @@ let GistBox = React.createClass({
         };
     },
 
+    addGist: function (username) {
+        let url = `https://api.github.com/users/${username}/gists`;
+        
+        $.get(url, function (result) {
+            const r = result[0];
+            const username = r.owner.login;
+            const url = r.html_url;
+            let gists = this.state.gists.concat({username, url});
+            this.setState({gists});
+        }.bind(this));
+    },
+
     render: function () {
         const newGist = function (gist) {
             return <Gist username={gist.username} url={gist.url}/>;
@@ -21,7 +33,7 @@ let GistBox = React.createClass({
             <div>
                 <h1>GistBox</h1>
 
-                <GistAddForm onAdd={this.addGist}></GistAddForm>
+                <GistAddForm onAdd={this.addGist}/>
 
                 {this.state.gists.map(newGist)}
             </div>

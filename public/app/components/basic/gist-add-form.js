@@ -3,20 +3,24 @@
 //
 let GistAddForm = React.createClass({
 
-    setInitialState: function () {
-        return {
-            text: ''
-        }
+    getInitialState: function () {
+        return {username: ''}
     },
 
-    onChange: function () {
-        
+    onChange: function (e) {
+        this.setState({username: e.target.value});
+    },
+
+    addGist: function (e) {
+        e.preventDefault();
+        this.props.onAdd(this.state.username);
+        this.setState({username: ''});
     },
 
     render: function () {
         return (
-            <form action="">
-                <input type="text" value={this.state.text}
+            <form onSubmit={this.addGist}>
+                <input type="text" value={this.state.username}
                        onChange={this.onChange} placeholder="type github username"/>
                 <button>Get Gist</button>
             </form>
