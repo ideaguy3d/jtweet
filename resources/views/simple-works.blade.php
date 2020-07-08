@@ -45,7 +45,7 @@ Released   : 20140225
                     <a href="/about" accesskey="3" title="">About Us</a></li>
 
                 <li class="{{Request::is('careers') ? 'current_page_item' : ''}}">
-                    <a href="#" accesskey="4" title="">Articles</a></li>
+                    <a href="/articles" accesskey="4" title="">Articles</a></li>
 
                 <li class="{{Request::is('contact') ? 'current_page_item' : ''}}">
                     <a href="/contact" accesskey="5" title="">Contact Us</a></li>
