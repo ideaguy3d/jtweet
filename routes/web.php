@@ -37,5 +37,8 @@ Route::get('/about', function() {
 });
 
 Route::get('/articles', 'ArticlesController@index');
-
+Route::post('/articles', 'ArticlesController@store');
+Route::get('/articles/create', 'ArticlesController@create');
+// wildcard goes last
 Route::get('/articles/{articleId}', 'ArticlesController@show');
+Route::get('/articles/{articleId}/edit', 'ArticlesController@edit');
