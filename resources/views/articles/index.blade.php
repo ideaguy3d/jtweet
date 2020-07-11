@@ -4,7 +4,7 @@
     <div class="container">
         <ol>
         @foreach($articles as $article)
-            <li>
+            <li class="ja-list">
                 <h3><a href="/articles/{{$article->id}}">{{$article->title}}</a></h3>
 
                 <p><a href="/articles/{{$article->id}}">{{$article->excerpt}}</a></p>

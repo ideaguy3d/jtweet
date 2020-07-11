@@ -941,3 +941,8 @@ ul.contact li a.icon-rss:before
 {
 	float: right;
 }
+
+
+.ja-list * {
+    color: whitesmoke;
+}
