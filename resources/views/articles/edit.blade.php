@@ -6,25 +6,29 @@
 
 @section('content')
     <div id="page" class="container">
-        <h1>New Article</h1>
+        <h1>Edit Article</h1>
 
-        <form action="/articles" method="POST">
+        <form action="/articles/{{$article->id}}" method="POST">
             @csrf
+            @method('PUT')
+
             <label for="title">title</label>
             <br>
-            <input id="title" type="text" name="title">
+            <input id="title" type="text" name="title" value="{{$article->title}}">
 
             <br><br>
 
             <label for="excerpt">Excerpt</label>
             <br>
-            <input type="text" id="excerpt" name="excerpt">
+            <input type="text" id="excerpt" name="excerpt" value="{{$article->excerpt}}">
 
             <br><br>
 
             <label for="body">Body</label>
             <br>
-            <textarea type="text" id="body" name="body"></textarea>
+            <textarea id="body" name="body">
+                {{$article->body}}
+            </textarea>
             <br>
             <button type="submit">Submit</button>
         </form>
