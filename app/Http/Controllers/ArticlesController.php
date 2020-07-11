@@ -24,13 +24,17 @@ class ArticlesController extends Controller
     
     public function store() {
         // validation
+        request()->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required'
+        ]);
         
         $article = new Article();
         $article->title = request('title');
         $article->excerpt = request('excerpt');
         $article->body = request('body');
         $article->save();
-        //dd(request()->all());
         
         return redirect('/articles');
     }

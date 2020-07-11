@@ -15,6 +15,9 @@
             <label for="title">title</label>
             <br>
             <input id="title" type="text" name="title" value="{{$article->title}}">
+            @if($errors->has('title'))
+                <p class="error">{{$error->first('title')}}</p>
+            @endif
 
             <br><br>
 

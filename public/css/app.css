@@ -53,3 +53,8 @@ body {
 h1 {
     color: green;
 }
+
+.error {
+    color: red;
+    font-weight: bolder;
+}

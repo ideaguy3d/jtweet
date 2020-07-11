@@ -12,13 +12,19 @@
             @csrf
             <label for="title">title</label>
             <br>
-            <input id="title" type="text" name="title">
+            <input id="title" type="text" name="title" value="{{@old('title')}}">
+            @error('title')
+                <p class="error">{{$errors->first('title')}}</p>
+            @enderror
 
             <br><br>
 
             <label for="excerpt">Excerpt</label>
             <br>
             <input type="text" id="excerpt" name="excerpt">
+            @error('excerpt')
+            <p class="error">{{$errors->first('excerpt')}}</p>
+            @enderror
 
             <br><br>
 
