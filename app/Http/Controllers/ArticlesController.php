@@ -7,9 +7,7 @@ use App\Article;
 
 class ArticlesController extends Controller
 {
-    //
-    public function show($articleId) {
-        $article = Article::find($articleId);
+    public function show(Article $article) {
         return view('articles.show', ['article' => $article]);
     }
     
@@ -23,34 +21,25 @@ class ArticlesController extends Controller
     }
     
     public function store() {
-        // validation
-        request()->validate([
+        Article::create(request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
-            'body' => 'required'
-        ]);
-        
-        $article = new Article();
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-        $article->save();
+            'body' => 'required',
+        ]));
         
         return redirect('/articles');
     }
     
-    public function edit($id) {
-        $article = Article::find($id);
-        
+    public function edit(Article $article) {
         return view('articles.edit', compact('article'));
     }
     
-    public function update($id) {
-        $article = Article::find($id);
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-        $article->save();
+    public function update(Article $article) {
+        Article::create(request()->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required',
+        ]));
         
         return redirect('/articles/' . $article->id);
     }
