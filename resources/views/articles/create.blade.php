@@ -10,27 +10,40 @@
 
         <form action="/articles" method="POST">
             @csrf
-            <label for="title">title</label>
-            <br>
-            <input id="title" type="text" name="title" value="{{@old('title')}}">
+
+            <div class="@error('title') error @enderror">
+                <label for="title">title</label>
+                <br>
+                <input id="title" type="text" name="title" value="{{@old('title')}}">
+            </div>
             @error('title')
-                <p class="error">{{$errors->first('title')}}</p>
+            <p class="error">{{$errors->first('title')}}</p>
             @enderror
 
             <br><br>
 
-            <label for="excerpt">Excerpt</label>
-            <br>
-            <input type="text" id="excerpt" name="excerpt">
+            <div class="@error('excerpt') error @enderror">
+                <label for="excerpt">Excerpt</label>
+                <br>
+                <input type="text" id="excerpt" name="excerpt">
+            </div>
             @error('excerpt')
             <p class="error">{{$errors->first('excerpt')}}</p>
             @enderror
 
             <br><br>
 
-            <label for="body">Body</label>
-            <br>
-            <textarea type="text" id="body" name="body"></textarea>
+            <div class="@error('body') error @enderror">
+                <label for="body">Body</label>
+                <br>
+                <textarea id="body" name="body">
+                {{old('body')}}
+            </textarea>
+            </div>
+            @error('body')
+            <p class="error">{{$errors->first('body')}}</p>
+            @enderror
+
             <br>
             <button type="submit">Submit</button>
         </form>
